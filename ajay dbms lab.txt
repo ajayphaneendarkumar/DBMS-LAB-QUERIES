@@ -100,5 +100,72 @@ ENAME
 Srinivas 
 
 7)
+select count(*) ,j.name from Employ e,J j
+where e.job=j.Jcode
+group by j.name
+
+COUNT(*) 	NAME
+2 	Manager
+2 	Analyst
+4 	Staff
+3 	Clerk
+1 	President
+
+8)
+select d.name ,count(*) from Employ e ,DEPARTMENT d
+where e.DEPTNO=d.DEPTNO 
+group by d.name
+having avg(salary)>40000
+
+NAME 	COUNT(*)
+Research 	3
+Sales 	5
+Operations 	4
+
+9)
+select sum(salary) from Employ e,J j
+where e.job=j.JCODE
+group by j.JCODE
+
+SUM(SALARY)
+1200000
+1600000
+2000000
+320000
+2100000 
+
+10)
+select sum(salary) from Employ e ,J j
+where e.job=j.JCODE and j.name='Clerk'
+group by e.deptno
+
+SUM(SALARY)
+80000
+120000
+120000
+
+//power of queries
+11)
+select ename 
+from Employ
+where salary=(select max(salary) 
+                       from   Employ);
+
+ENAME
+Venkat 
+
+12)
+select ename ,empno ,job,salary
+from Employ 
+where job=(select Jcode from J where name='Clerk')
+ and
+salary =(select max(salary) from Employ where job=(select JCODE from
+job where name='Clerk'))
+
+ENAME 	EMPNO 	JOB 	SALARY
+Suresh 	10 	667 	120000
+Kumar 	12 	667 	120000
+
+
 
 
