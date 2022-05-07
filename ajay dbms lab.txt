@@ -166,6 +166,73 @@ ENAME 	EMPNO 	JOB 	SALARY
 Suresh 	10 	667 	120000
 Kumar 	12 	667 	120000
 
+13)
+select  ename,salary
+from Employ
+where job=(select jcode 
+                  from J where name='Clerk')
+           and
+            salary=(select  max(salary)
+                       from Employ
+                       where job=(select jcode 
+                                           from J 
+                                            where     name='Clerk'))
+                                            
+                                            
+14)
+select ename 
+from Employ
+where job=(select jcode 
+                   from J 
+                   where name='Staff')
+          and 
+          salary >ANY (select SALARY
+                         from Employ 
+                          where job=(select jcode 
+                                            from  J 
+                                             where name='Clerk') ) 
 
+15)
 
-
+select  ENAME,salary
+from Employ 
+where job=(select  JCODE 
+                     from  J 
+                     where name='Clerk') 
+          and
+          salary >ALL (select min(salary)
+                                from Employ
+                                 where job=(select JCODE
+                                                    from J 
+                                                     where name='Staff'))
+         
+ 
+16)
+select ename 
+from   Employ
+where deptno IN (select deptno 
+                        from department
+                        where name='Operations')
+                        
+                        
+  17)
+  
+      select ename from employ
+where deptno IN (select deptno
+                       from department
+                       where Location = (select Location
+                                                     from L
+                                                      where name=(select name 
+                                                                             from L
+                                                                              where name='Kakinada')))
+                                                       
+                                                       
+   18)
+   
+         select ename 
+from employ
+where deptno=30
+    and
+     salary > ANY(select salary 
+                           from employ)
+       
