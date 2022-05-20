@@ -236,3 +236,18 @@ where deptno=30
      salary > ANY(select salary 
                            from employ)
        
+programs:
+   1)
+      
+      #basic program to display hello world
+       set serveroutput on
+       begin
+       dbms_output.put_line('hello world');
+       end; 
+      output:
+          hello world
+PL/SQL procedure successfully completed.
+
+
+2)
+  
